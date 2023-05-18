@@ -21,15 +21,13 @@ import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
 import com.intelligt.modbus.jlibmodbus.slave.ModbusSlave;
 import com.intelligt.modbus.jlibmodbus.slave.ModbusSlaveFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import jssc.SerialPortList;
 
 import java.net.InetAddress;
 import java.nio.charset.Charset;
 
 public class App implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+//    private static final Logger log = LoggerFactory.getLogger(App.class);
     private ModbusMaster master;
     private ModbusSlave slave;
     private long timeout = 0;
@@ -127,37 +125,35 @@ public class App implements Runnable {
             test.slave.setDataHolder(new SimpleDataHolderBuilder(1000));
             Modbus.setLogLevel(Modbus.LogLevel.LEVEL_RELEASE);
 
-            DataHolder dataHolder = test.slave.getDataHolder();
-            dataHolder.getCoils().set(1, true);
-            dataHolder.getCoils().set(3, true);
-            dataHolder.getDiscreteInputs().setRange(0, new boolean[]{false, true, true, false, true});
-            dataHolder.getInputRegisters().setRange(0, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-            dataHolder.getInputRegisters().set(11, 69);
-            dataHolder.getHoldingRegisters().setRange(0, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-            dataHolder.getSlaveId().set("slave implementation = jlibmodbus".getBytes(Charset.forName("UTF-8")));
-            dataHolder.getExceptionStatus().set(123);
-            dataHolder.getCommStatus().addEvent(ModbusCommEventSend.createExceptionSentRead());
-            ReadDeviceIdentificationInterface rii = dataHolder.getReadDeviceIdentificationInterface();
-            rii.setVendorName("Vendor name=\"JSC Invertor\"");
-            rii.setProductCode("Product code=\"3245234658\"");
-            rii.setMajorMinorRevision("Revision=\"v1.0\"");
-            FifoQueue fifo = dataHolder.getFifoQueue(0);
-            for (int i = 0; i < 35; i++) {
-                if (fifo.size() == Modbus.MAX_FIFO_COUNT)
-                    fifo.poll();
-                fifo.add(i * 11);
+            try {
+                DataHolder dataHolder = test.slave.getDataHolder();
+                dataHolder.getCoils().set(1, true);
+                dataHolder.getCoils().set(3, true);
+                dataHolder.getDiscreteInputs().setRange(0, new boolean[]{false, true, true, false, true});
+                dataHolder.getInputRegisters().setRange(0, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+                dataHolder.getInputRegisters().set(11, 69);
+                dataHolder.getHoldingRegisters().setRange(0, new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+                dataHolder.getSlaveId().set("slave implementation = jlibmodbus".getBytes(Charset.forName("UTF-8")));
+                dataHolder.getExceptionStatus().set(123);
+                dataHolder.getCommStatus().addEvent(ModbusCommEventSend.createExceptionSentRead());
+                ReadDeviceIdentificationInterface rii = dataHolder.getReadDeviceIdentificationInterface();
+                rii.setVendorName("Vendor name=\"JSC Invertor\"");
+                rii.setProductCode("Product code=\"3245234658\"");
+                rii.setMajorMinorRevision("Revision=\"v1.0\"");
+                FifoQueue fifo = dataHolder.getFifoQueue(0);
+                for (int i = 0; i < 35; i++) {
+                    if (fifo.size() == Modbus.MAX_FIFO_COUNT)
+                        fifo.poll();
+                    fifo.add(i * 11);
+                }
             }
-
-//            try {
-//
-//            }
-//            catch (IllegalDataAddressException e) {
+            catch (IllegalDataAddressException e) {
 //                log.error(e.getMessage());
 //                log.error(e.getDataAddress() + "");
-//                e.printStackTrace();
-//            } catch (IllegalDataValueException e) {
-//                e.printStackTrace();
-//            }
+                e.printStackTrace();
+            } catch (IllegalDataValueException e) {
+                e.printStackTrace();
+            }
 
             test.start(10000);
         } catch (RuntimeException e) {
