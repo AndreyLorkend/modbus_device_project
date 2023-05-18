@@ -46,6 +46,33 @@
           <target>6</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+
+        <configuration>
+          <archive>
+
+            <!--Если надо конфигурировать манифест, то здесь-->
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <!--путь к зависимостям относительно запускаемого jar файла-->
+              <!--ВСЕ ЗАВИСИМОСТИ ДОЛЖНЫ БУДУТ ПОСТАВЛЯТЬСЯ С ТВОИМ jar приложением. -->
+              <classpathPrefix>lib/</classpathPrefix>
+              <classpathLayoutType>simple</classpathLayoutType>
+
+              <mainClass>org.modbus.device.App</mainClass>
+            </manifest>
+            <!--<manifestEntries>-->
+            <!--<Rsrc-Class-Path>${}</Rsrc-Class-Path>-->
+            <!--</manifestEntries>-->
+
+          </archive>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 </project>
