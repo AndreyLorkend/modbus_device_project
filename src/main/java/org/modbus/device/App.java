@@ -148,11 +148,13 @@ public class App implements Runnable {
                         fifo.poll();
                     fifo.add(i * 11);
                 }
-            } catch (IllegalDataAddressException e) {
-                log.error(e.getMessage());
-                log.error(e.getDataAddress() + "");
-                e.printStackTrace();
-            } catch (IllegalDataValueException e) {
+            }
+//            catch (IllegalDataAddressException e) {
+//                log.error(e.getMessage());
+//                log.error(e.getDataAddress() + "");
+//                e.printStackTrace();
+//            }
+            catch   (IllegalDataValueException e) {
                 e.printStackTrace();
             }
 
