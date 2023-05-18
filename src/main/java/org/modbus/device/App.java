@@ -21,13 +21,15 @@ import com.intelligt.modbus.jlibmodbus.serial.SerialUtils;
 import com.intelligt.modbus.jlibmodbus.slave.ModbusSlave;
 import com.intelligt.modbus.jlibmodbus.slave.ModbusSlaveFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import jssc.SerialPortList;
 
 import java.net.InetAddress;
 import java.nio.charset.Charset;
 
 public class App implements Runnable {
-
+    private static final Logger log = LoggerFactory.getLogger(App.class);
     private ModbusMaster master;
     private ModbusSlave slave;
     private long timeout = 0;
@@ -147,6 +149,8 @@ public class App implements Runnable {
                     fifo.add(i * 11);
                 }
             } catch (IllegalDataAddressException e) {
+                log.error(e.getMessage());
+                log.error(e.getDataAddress() + "");
                 e.printStackTrace();
             } catch (IllegalDataValueException e) {
                 e.printStackTrace();
