@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62168582-2a3f-4d7c-8b9b-84e2583ee0eb" name="Changes" comment="fix">
+    <list default="true" id="62168582-2a3f-4d7c-8b9b-84e2583ee0eb" name="Changes" comment="add print timeseries in loop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/ModbusMasterDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/ModbusMasterDevice.java" afterDir="false" />
     </list>
@@ -192,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684514587401</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add print timeseries in loop">
+      <created>1684515483811</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1684515483811</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +222,7 @@
     <MESSAGE value="deleted unused code" />
     <MESSAGE value="add modbus master" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add print timeseries in loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="add print timeseries in loop" />
   </component>
 </project>
