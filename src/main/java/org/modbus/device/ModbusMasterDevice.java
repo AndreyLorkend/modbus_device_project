@@ -35,8 +35,8 @@ public class ModbusMasterDevice implements BaseDevice{
                 try {
                     int[] timeSeries = modbusMasterRTU.readInputRegisters(1, 1, 2);
                     if(timeSeries.length > 1) {
-                        System.out.println("Temperature: " + timeSeries[0] / 10 + " C");
-                        System.out.println("Humidity: " + timeSeries[1] / 10 + " %");
+                        System.out.println("Temperature: " + (timeSeries[0] / 10.0) + " C");
+                        System.out.println("Humidity: " + (timeSeries[1] / 10.0) + " %");
                         System.out.println();
                     }
                 } catch (ModbusProtocolException e) {
