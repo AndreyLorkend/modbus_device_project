@@ -6,6 +6,8 @@ import com.intelligt.modbus.jlibmodbus.exception.ModbusProtocolException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.serial.*;
+import com.intelligt.modbus.jlibmodbus.utils.FrameEvent;
+import com.intelligt.modbus.jlibmodbus.utils.FrameEventListener;
 import jssc.SerialPortList;
 
 public class ModbusMasterDevice implements BaseDevice{
@@ -28,17 +30,25 @@ public class ModbusMasterDevice implements BaseDevice{
     public void connect() {
         try {
             modbusMasterRTU.connect();
-            int[] timeSeries = modbusMasterRTU.readInputRegisters(1, 1, 2);
-            if(timeSeries.length > 1) {
-                System.out.println("Temperature: " + timeSeries[0]);
-                System.out.println("Humidity: "+ timeSeries[1]);
+            while(modbusMasterRTU.isConnected()) {
+                Thread.sleep(1000);
+                try {
+                    int[] timeSeries = modbusMasterRTU.readInputRegisters(1, 1, 2);
+                    if(timeSeries.length > 1) {
+                        System.out.println("Temperature: " + timeSeries[0]);
+                        System.out.println("Humidity: " + timeSeries[1]);
+                        System.out.println();
+                    }
+                } catch (ModbusProtocolException e) {
+                    throw new RuntimeException(e);
+                } catch (ModbusNumberException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            modbusMasterRTU.disconnect();
+
         } catch (ModbusIOException e) {
             throw new RuntimeException(e);
-        } catch (ModbusProtocolException e) {
-            throw new RuntimeException(e);
-        } catch (ModbusNumberException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
