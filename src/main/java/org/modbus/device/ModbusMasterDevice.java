@@ -47,6 +47,9 @@ public class ModbusMasterDevice implements BaseDevice{
     public void initConnectionSettings() {
         try{
             String[] devicesList = SerialPortList.getPortNames();
+            for(String device : devicesList) {
+                System.out.println(device);
+            }
             serialParameters_.setBaudRate(baudRate_);
             if(devicesList.length > 0) {
                 serialParameters_.setDevice(devicesList[0]);
