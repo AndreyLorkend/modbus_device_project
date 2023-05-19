@@ -27,8 +27,6 @@ import java.net.InetAddress;
 import java.nio.charset.Charset;
 
 public class App implements Runnable {
-//    private static final Logger log = LoggerFactory.getLogger(App.class);
-    private ModbusMaster master;
     private ModbusSlave slave;
     private long timeout = 0;
 
@@ -55,7 +53,6 @@ public class App implements Runnable {
                 case RTU:
                     sp = new SerialParameters();
                     String device_name_slave = "/dev/ttyUSB0";
-                    String device_name_master = "/dev/ttyUSB0";
                     SerialPort.BaudRate baud_rate = SerialPort.BaudRate.BAUD_RATE_9600;
                     int data_bits = 8;
                     int stop_bits = 1;
@@ -63,12 +60,6 @@ public class App implements Runnable {
 
                     try {
                         device_name_slave = initParameter("device_name_slave", device_name_slave, "/dev/ttyUSB0", new ParameterInitializer<String>() {
-                            @Override
-                            public String init(String arg) throws Exception {
-                                return arg;
-                            }
-                        });
-                        device_name_master = initParameter("device_name_master", device_name_master, "/dev/ttyUSB0", new ParameterInitializer<String>() {
                             @Override
                             public String init(String arg) throws Exception {
                                 return arg;
@@ -108,19 +99,14 @@ public class App implements Runnable {
                     sp.setStopBits(stop_bits);
                     sp.setDataBits(data_bits);
                     sp.setBaudRate(baud_rate);
-                    sp.setDevice(device_name_master);
-                    test.master = ModbusMasterFactory.createModbusMasterRTU(sp);
                     sp.setDevice(device_name_slave);
                     test.slave = ModbusSlaveFactory.createModbusSlaveRTU(sp);
                     break;
                 default:
                     tp = new TcpParameters(InetAddress.getLocalHost(), Modbus.TCP_PORT, true);
-                    //test.master = ModbusMasterFactory.createModbusMasterTCP(tp);
                     test.slave = ModbusSlaveFactory.createModbusSlaveTCP(tp);
 
             }
-            //test.master.setResponseTimeout(1000);
-
             test.slave.setServerAddress(1);
             test.slave.setDataHolder(new SimpleDataHolderBuilder(1000));
             Modbus.setLogLevel(Modbus.LogLevel.LEVEL_RELEASE);
@@ -161,18 +147,6 @@ public class App implements Runnable {
         }
     }
 
-    private static void printUsage() {
-        System.out.format("Usage: %s [%s, %s, %s]%n", App.class.getCanonicalName(), "tcp", "rtu", "ascii");
-        System.out.format("\t%s additional parameters:%s %s %s%n\t\t%s%n", "tcp",
-                "ip address", "port", "keep_alive(true, false)",
-                "Example: 127.0.0.1 502 true");
-        System.out.format("\t%s additional parameters:%s %s %s %s %s %s%n\t\t%s%n", "rtu",
-                "device_name_slave", "device_name_master", "baud_rate", "data_bits", "stop_bits", "parity(none, odd, even, mark, space)",
-                "Example: COM1 115200 8 1 none");
-        System.out.format("\t%s additional parameters:%s %s %s %s%n\t\t%s%n", "ascii",
-                "device_name_slave", "device_name_master", "baud_rate", "parity(none, odd, even, mark, space)",
-                "Example: COM1 115200 odd");
-    }
 
     private static void printRegisters(String title, int[] ir) {
         for (int i : ir)
@@ -202,49 +176,21 @@ public class App implements Runnable {
         long time = System.currentTimeMillis();
         try {
             slave.listen();
-            master.connect();
-            master.writeSingleRegister(1, 0, 69);
             Modbus.setAutoIncrementTransactionId(true);
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        master.setResponseTimeout(1000);
         while ((System.currentTimeMillis() - time) < timeout) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
                 System.out.println("Slave output");
                 printRegisters("Holding registers", slave.getDataHolder().getHoldingRegisters().getRange(0, 16));
                 printRegisters("Input registers", slave.getDataHolder().getInputRegisters().getRange(0, 16));
                 printBits("Coils", slave.getDataHolder().getCoils().getRange(0, 16));
                 printBits("Discrete inputs", slave.getDataHolder().getDiscreteInputs().getRange(0, 16));
                 System.out.println();
-//                System.out.println("Master output");
-//                printRegisters("Holding registers", master.readHoldingRegisters(1, 0, 16));
-//                printRegisters("Input registers", master.readInputRegisters(1, 0, 16));
-//                printRegisters("Read write registers", master.readWriteMultipleRegisters(1, 0, 16, 3, new int[]{33, 44}));
-//                printRegisters("Fifo queue registers", master.readFifoQueue(1, 0));
-//                printBits("Coils", master.readCoils(1, 0, 16));
-//                printBits("Discrete inputs", master.readDiscreteInputs(1, 0, 16));
-//                if (!(master instanceof ModbusMasterTCP)) {
-//                    System.out.format("%s\t\t%s%n", "Slave Id", new String(master.reportSlaveId(1), Charset.defaultCharset()));
-//                    System.out.format("%s\t\t%d%n", "Exception status", master.readExceptionStatus(1));
-//                    System.out.format("%s\t\t%d%n", "Comm event counter", master.getCommEventCounter(1).getEventCount());
-//                    System.out.format("%s\t\t%d%n", "Comm message count", master.getCommEventLog(1).getMessageCount());
-//                    System.out.format("%s\t\t\t\t%d%n", "Diagnostics", master.diagnosticsReturnBusMessageCount(1));
-//                }
-//                master.maskWriteRegister(1, 0, 7, 10);
-//                master.writeSingleCoil(1, 13, true);
-//                master.writeMultipleRegisters(1, 5, new int[]{55, 66, 77, 88, 99});
-//                master.writeMultipleCoils(1, 0, new boolean[]{true, true, true});
-//                MEIReadDeviceIdentification rdi = master.readDeviceIdentification(1, 0, ReadDeviceIdentificationCode.BASIC_STREAM_ACCESS);
-                //ReadDeviceIdentificationInterface.DataObject[] objects = rdi.getObjects();
-//                System.out.format("%s\t", "Device identification");
-//                for (ReadDeviceIdentificationInterface.DataObject o : objects) {
-//                    System.out.format("%s ", new String(o.getValue(), Charset.defaultCharset()));
-//                }
-//                System.out.println();
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {
@@ -254,7 +200,6 @@ public class App implements Runnable {
 
         try {
             slave.shutdown();
-            //master.disconnect();
         } catch (ModbusIOException e) {
             e.printStackTrace();
         }

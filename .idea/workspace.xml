@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="delete unused files">
+    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="commented unused code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" afterDir="false" />
     </list>
@@ -149,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684500980670</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="commented unused code">
+      <created>1684501121967</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684501121967</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +175,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="fix pom" />
     <MESSAGE value="delete unused files" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete unused files" />
+    <MESSAGE value="commented unused code" />
+    <option name="LAST_COMMIT_MESSAGE" value="commented unused code" />
   </component>
 </project>
