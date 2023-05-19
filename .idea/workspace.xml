@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="test">
+    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="delete unused files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +135,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684408685890</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix pom">
+      <created>1684500934719</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1684500934719</updated>
+    </task>
+    <task id="LOCAL-00011" summary="delete unused files">
+      <created>1684500980670</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684500980670</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,8 +165,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init modbus" />
-    <MESSAGE value="fix pom" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="fix pom" />
+    <MESSAGE value="delete unused files" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete unused files" />
   </component>
 </project>

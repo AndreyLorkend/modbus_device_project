@@ -115,11 +115,11 @@ public class App implements Runnable {
                     break;
                 default:
                     tp = new TcpParameters(InetAddress.getLocalHost(), Modbus.TCP_PORT, true);
-                    test.master = ModbusMasterFactory.createModbusMasterTCP(tp);
+                    //test.master = ModbusMasterFactory.createModbusMasterTCP(tp);
                     test.slave = ModbusSlaveFactory.createModbusSlaveTCP(tp);
 
             }
-            test.master.setResponseTimeout(1000);
+            //test.master.setResponseTimeout(1000);
 
             test.slave.setServerAddress(1);
             test.slave.setDataHolder(new SimpleDataHolderBuilder(1000));
@@ -148,8 +148,6 @@ public class App implements Runnable {
                 }
             }
             catch (IllegalDataAddressException e) {
-//                log.error(e.getMessage());
-//                log.error(e.getDataAddress() + "");
                 e.printStackTrace();
             } catch (IllegalDataValueException e) {
                 e.printStackTrace();
@@ -222,31 +220,31 @@ public class App implements Runnable {
                 printBits("Coils", slave.getDataHolder().getCoils().getRange(0, 16));
                 printBits("Discrete inputs", slave.getDataHolder().getDiscreteInputs().getRange(0, 16));
                 System.out.println();
-                System.out.println("Master output");
-                printRegisters("Holding registers", master.readHoldingRegisters(1, 0, 16));
-                printRegisters("Input registers", master.readInputRegisters(1, 0, 16));
-                printRegisters("Read write registers", master.readWriteMultipleRegisters(1, 0, 16, 3, new int[]{33, 44}));
-                printRegisters("Fifo queue registers", master.readFifoQueue(1, 0));
-                printBits("Coils", master.readCoils(1, 0, 16));
-                printBits("Discrete inputs", master.readDiscreteInputs(1, 0, 16));
-                if (!(master instanceof ModbusMasterTCP)) {
-                    System.out.format("%s\t\t%s%n", "Slave Id", new String(master.reportSlaveId(1), Charset.defaultCharset()));
-                    System.out.format("%s\t\t%d%n", "Exception status", master.readExceptionStatus(1));
-                    System.out.format("%s\t\t%d%n", "Comm event counter", master.getCommEventCounter(1).getEventCount());
-                    System.out.format("%s\t\t%d%n", "Comm message count", master.getCommEventLog(1).getMessageCount());
-                    System.out.format("%s\t\t\t\t%d%n", "Diagnostics", master.diagnosticsReturnBusMessageCount(1));
-                }
-                master.maskWriteRegister(1, 0, 7, 10);
-                master.writeSingleCoil(1, 13, true);
-                master.writeMultipleRegisters(1, 5, new int[]{55, 66, 77, 88, 99});
-                master.writeMultipleCoils(1, 0, new boolean[]{true, true, true});
-                MEIReadDeviceIdentification rdi = master.readDeviceIdentification(1, 0, ReadDeviceIdentificationCode.BASIC_STREAM_ACCESS);
-                ReadDeviceIdentificationInterface.DataObject[] objects = rdi.getObjects();
-                System.out.format("%s\t", "Device identification");
-                for (ReadDeviceIdentificationInterface.DataObject o : objects) {
-                    System.out.format("%s ", new String(o.getValue(), Charset.defaultCharset()));
-                }
-                System.out.println();
+//                System.out.println("Master output");
+//                printRegisters("Holding registers", master.readHoldingRegisters(1, 0, 16));
+//                printRegisters("Input registers", master.readInputRegisters(1, 0, 16));
+//                printRegisters("Read write registers", master.readWriteMultipleRegisters(1, 0, 16, 3, new int[]{33, 44}));
+//                printRegisters("Fifo queue registers", master.readFifoQueue(1, 0));
+//                printBits("Coils", master.readCoils(1, 0, 16));
+//                printBits("Discrete inputs", master.readDiscreteInputs(1, 0, 16));
+//                if (!(master instanceof ModbusMasterTCP)) {
+//                    System.out.format("%s\t\t%s%n", "Slave Id", new String(master.reportSlaveId(1), Charset.defaultCharset()));
+//                    System.out.format("%s\t\t%d%n", "Exception status", master.readExceptionStatus(1));
+//                    System.out.format("%s\t\t%d%n", "Comm event counter", master.getCommEventCounter(1).getEventCount());
+//                    System.out.format("%s\t\t%d%n", "Comm message count", master.getCommEventLog(1).getMessageCount());
+//                    System.out.format("%s\t\t\t\t%d%n", "Diagnostics", master.diagnosticsReturnBusMessageCount(1));
+//                }
+//                master.maskWriteRegister(1, 0, 7, 10);
+//                master.writeSingleCoil(1, 13, true);
+//                master.writeMultipleRegisters(1, 5, new int[]{55, 66, 77, 88, 99});
+//                master.writeMultipleCoils(1, 0, new boolean[]{true, true, true});
+//                MEIReadDeviceIdentification rdi = master.readDeviceIdentification(1, 0, ReadDeviceIdentificationCode.BASIC_STREAM_ACCESS);
+                //ReadDeviceIdentificationInterface.DataObject[] objects = rdi.getObjects();
+//                System.out.format("%s\t", "Device identification");
+//                for (ReadDeviceIdentificationInterface.DataObject o : objects) {
+//                    System.out.format("%s ", new String(o.getValue(), Charset.defaultCharset()));
+//                }
+//                System.out.println();
             } catch (RuntimeException e) {
                 throw e;
             } catch (Exception e) {
@@ -256,7 +254,7 @@ public class App implements Runnable {
 
         try {
             slave.shutdown();
-            master.disconnect();
+            //master.disconnect();
         } catch (ModbusIOException e) {
             e.printStackTrace();
         }
