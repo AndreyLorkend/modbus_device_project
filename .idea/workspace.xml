@@ -9,14 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="commented unused code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" afterDir="false" />
+    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="add modbus master">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/ModbusMasterDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/ModbusMasterDevice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -156,7 +163,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684501121967</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="deleted unused code">
+      <created>1684501747582</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684501747582</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add modbus master">
+      <created>1684514277836</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684514277836</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +197,8 @@
     <MESSAGE value="fix pom" />
     <MESSAGE value="delete unused files" />
     <MESSAGE value="commented unused code" />
-    <option name="LAST_COMMIT_MESSAGE" value="commented unused code" />
+    <MESSAGE value="deleted unused code" />
+    <MESSAGE value="add modbus master" />
+    <option name="LAST_COMMIT_MESSAGE" value="add modbus master" />
   </component>
 </project>
