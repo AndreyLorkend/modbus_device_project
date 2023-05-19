@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="commented unused code">
+    <list default="true" id="7b413700-281c-4107-9ebf-cce70abbc5bd" name="Changes" comment="deleted unused code">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/BaseDevice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/ModbusMasterDevice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/TransportType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/modbus/device/App.java" afterDir="false" />
     </list>
@@ -17,6 +20,14 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -156,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684501121967</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="deleted unused code">
+      <created>1684501747582</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684501747582</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +194,7 @@
     <MESSAGE value="fix pom" />
     <MESSAGE value="delete unused files" />
     <MESSAGE value="commented unused code" />
-    <option name="LAST_COMMIT_MESSAGE" value="commented unused code" />
+    <MESSAGE value="deleted unused code" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted unused code" />
   </component>
 </project>
